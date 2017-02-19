@@ -361,7 +361,7 @@ class PodcastService {
 										resolve();
 									},
 									error: function (jqXHR, textStatus, errorThrown) {
-										console.error("An error ocurred getting podcast episodes information: %s", textStatus, errorThrown);
+										console.error("Couldn't get episodes information");
 
 										reject();
 									}
@@ -373,7 +373,7 @@ class PodcastService {
 							}
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
-							console.error("An error ocurred getting podcast information: %s, Error: %O", textStatus, errorThrown);
+							console.error("Couldn't get podcast information");
 
 							reject();
 						}
@@ -561,6 +561,8 @@ let podcastDetailController = function (context) {
 						});
 					} else {
 						console.error('Podcast with id = %s not found', context.podcastId);
+
+						page("/");
 					}
 
 					$('#loading-indicator').trigger('stop-loading');
@@ -568,11 +570,15 @@ let podcastDetailController = function (context) {
 			).catch(function () {
 				console.error('An error ocurred loading the podcast detail');
 
+				page("/");
+
 				$('#loading-indicator').trigger('stop-loading');
 			});
 		}
 	).catch(function () {
 		console.error('An error ocurred loading the podcast list');
+
+		page("/");
 
 		$('#loading-indicator').trigger('stop-loading');
 	});
@@ -607,9 +613,13 @@ let episodeDetailController = function (context) {
 							});
 						} else {
 							console.error('Episode with id = %s not found for podcast %s', context.podcastId, podcast.title);
+
+							page("/podcast/" + podcast.id);
 						}
 					} else {
 						console.error('Podcast with id = %s not found', context.podcastId);
+
+						page("/");
 					}
 
 					$('#loading-indicator').trigger('stop-loading');
@@ -617,11 +627,15 @@ let episodeDetailController = function (context) {
 			).catch(function () {
 				console.error('An error ocurred loading the episode detail');
 
+				page("/");
+
 				$('#loading-indicator').trigger('stop-loading');
 			});
 		}
 	).catch(function () {
 		console.error('An error ocurred loading the podcast list');
+
+		page("/");
 
 		$('#loading-indicator').trigger('stop-loading');
 	});
