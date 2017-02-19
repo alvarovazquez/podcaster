@@ -49,6 +49,9 @@ body > header {
 	margin: 20px auto;
 }
 
+/*Loading indicator. Should it be always visible on screen even
+  though the header is not showing? I think so but in the requisites
+  seem that it should scroll with the header. */
 body > header #loading-indicator {
 	float: right;
 	display: none;
