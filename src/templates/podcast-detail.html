@@ -28,7 +28,7 @@
 					<tr>
 						<th>Title</th>
 						<th>Date</th>
-						<th>Duration</th>
+						<th class="duration">Duration</th>
 					</tr>
 				</thead>
 
@@ -37,7 +37,7 @@
 					<tr>
 						<td><a href="/podcast/{{../podcast.id}}/episode/{{id}}" title="Listen to {{title}}">{{title}}</a></td>
 						<td>{{formatDate publishDate}}</td>
-						<td>{{formatDuration duration}}</td>
+						<td class="duration">{{formatDuration duration}}</td>
 					</tr>
 					{{/each}}
 				</tbody>

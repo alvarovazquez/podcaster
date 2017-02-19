@@ -299,6 +299,10 @@ with no need of equaling heights */
 	color: #333;
 }
 
+#podcast-episodes > .episodes > table.episode-list > thead > tr > th.duration {
+	text-align: right;
+}
+
 #podcast-episodes > .episodes > table.episode-list > tbody > tr:nth-child(2n+1) {
 	background-color: #EEE;
 }
@@ -311,6 +315,14 @@ with no need of equaling heights */
 	font-size: 0.8em;
 	padding: 7px;
 	color: #333;
+}
+
+#podcast-episodes > .episodes > table.episode-list > tbody > tr > td.duration {
+	text-align: right;
+}
+
+#podcast-episodes > .episodes > table.episode-list > tbody > tr > td.date {
+
 }
 
 #podcast-episodes > .episodes > table.episode-list > tbody > tr > td > a:hover {
