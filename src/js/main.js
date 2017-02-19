@@ -459,6 +459,7 @@ function loadRoute(route, callback) {
 }
 
 // Controllers for each view
+/*
 let podcastListController = function (data) {
 	$('#loading-indicator').trigger('start-loading');
 
@@ -481,6 +482,66 @@ let podcastListController = function (data) {
 				$("main#container").html(templateHtml);
 
 				podcastFilterSetup();
+
+				$('#loading-indicator').trigger('stop-loading');
+			});
+		}
+	).catch(function () {
+		console.error('An error ocurred loading the podcast list');
+
+		$('#loading-indicator').trigger('stop-loading');
+	});
+};
+*/
+let podcastListController = function (data) {
+	$('#loading-indicator').trigger('start-loading');
+
+	// Update podcasts
+	podcastService.updatePodcasts().then(
+		function () {
+			// Podcast list
+			let podcasts = podcastService.getPodcasts();
+
+			// Once we get the podcast list, we load the template
+			loadRoute("/templates/main.html", function () {
+				// Prepare Handlebars templates
+				let source	= $("#podcasts").html();
+				let sourceList	= $("#podcast-list-template").html();
+				let sourceCount	= $("#podcast-count-template").html();
+
+				let template = Handlebars.compile(source);
+				let templateList = Handlebars.compile(sourceList);
+				let templateCount = Handlebars.compile(sourceCount);
+
+				let context = {
+					podcasts: podcasts
+				};
+
+				// Compile Handlebars main template
+				let templateHtml = template(context);
+				let templateHtmlList = templateList(context);
+				let templateHtmlCount = templateCount(context);
+
+				$("main#container").html(templateHtml);
+				$("main#container .podcast-list").html(templateHtmlList);
+				$("main#container #podcast-filter-qty").html(templateHtmlCount);
+
+				// Podcast filter setup
+				$('#podcast-filter-text').keyup(function () {
+					// Filter
+					let filteredPodcasts = podcastService.getFilteredPodcasts($(this).val());
+					// Update context
+					let context = {
+						podcasts: filteredPodcasts
+					};
+
+					// Recompile subtemplates
+					let templateHtmlList = templateList(context);
+					let templateHtmlCount = templateCount(context);
+
+					$("main#container .podcast-list").html(templateHtmlList);
+					$("main#container #podcast-filter-qty").html(templateHtmlCount);
+				});
 
 				$('#loading-indicator').trigger('stop-loading');
 			});

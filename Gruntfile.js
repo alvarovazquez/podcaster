@@ -57,7 +57,7 @@ module.exports = function(grunt) {
 					base: 'dist',
 					keepalive: true,
 					middleware: function(connect, options, middlewares) {
-						// 1. mod-rewrite behavior
+						// Redirect all 'non-asset' request to index.html
 						var rules = [
 							'!\\.html|\\.js|\\.css|\\.svg|\\.jp(e?)g|\\.png|\\.gif$ /index.html'
 						];
