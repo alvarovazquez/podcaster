@@ -452,6 +452,14 @@ Handlebars.registerHelper('lineSeparator', function(index) {
 	}
 });
 
+Handlebars.registerHelper('exists', function(variable, options) {
+	if (typeof variable !== 'undefined') {
+		return options.fn(this);
+	} else {
+		return options.inverse(this);
+	}
+});
+
 let podcastFilterSetup = function () {
 	// Podcast filter setup
 	$('#podcast-filter-text').keyup(function () {

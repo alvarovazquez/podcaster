@@ -11,10 +11,12 @@
 			<span class="author">by <a href="/podcast/{{podcast.id}}" title="Go back to podcast detail">{{podcast.author}}</a></span>
 		</div>
 
-		<h3>Description:</h3>
-		<div class="description">
-			{{{podcast.description}}}
-		</div>
+		{{#exists podcast.description}}
+			<h3>Description:</h3>
+			<div class="description">
+				{{{podcast.description}}}
+			</div>
+		{{/exists}}
 	</section>
 
 	<section id="podcast-episodes">
