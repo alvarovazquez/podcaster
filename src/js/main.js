@@ -435,7 +435,7 @@ Handlebars.registerHelper('formatDate', function(date) {
 
 Handlebars.registerHelper('formatDuration', function(duration) {
 	if (duration === undefined || duration === null) {
-		return 'no duration';
+		return '--:--';
 	} else if (duration.length > 0 && isNaN(duration)) {
 		return duration;
 	} else {
