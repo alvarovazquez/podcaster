@@ -1,4 +1,4 @@
-# (GitHub-Flavored) Markdown Editor
+# Podcaster
 
 ## A simple SPA Podcast application
 
