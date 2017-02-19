@@ -220,16 +220,29 @@ with no need of equaling heights */
 	margin: 15px auto;
 }
 
+#podcast-detail > .main-info > a:hover {
+	text-decoration: underline;
+	color: #000;
+}
+
 #podcast-detail > .main-info > a > h2 {
 	margin: 0;
 	font-size: .8em;
 	color: #000;
 }
 
-#podcast-detail > .main-info .author {
+#podcast-detail > .main-info > .author {
 	font-size: .8em;
 	color: #333;
 	font-style: italic;
+}
+
+#podcast-detail > .main-info > .author > a {
+	color: #333;
+}
+
+#podcast-detail > .main-info > .author > a:hover {
+	text-decoration: underline;
 }
 
 #podcast-detail > h3 {
@@ -296,6 +309,10 @@ with no need of equaling heights */
 	font-size: 0.8em;
 	padding: 7px;
 	color: #333;
+}
+
+#podcast-episodes > .episodes > table.episode-list > tbody > tr > td > a:hover {
+	text-decoration: underline;
 }
 
 /* Podcast episode detail */

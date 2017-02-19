@@ -1,3 +1,7 @@
+/* globals $ */
+/* globals page */
+/* globals Handlebars */
+
 /* Model classes */
 class Episode {
 	constructor(id, title, publishDate, description, duration, media) {
@@ -459,40 +463,6 @@ function loadRoute(route, callback) {
 }
 
 // Controllers for each view
-/*
-let podcastListController = function (data) {
-	$('#loading-indicator').trigger('start-loading');
-
-	// Update podcasts
-	podcastService.updatePodcasts().then(
-		function () {
-			// Podcast list
-			let podcasts = podcastService.getPodcasts();
-
-			// Once we get the podcast list, we load the template
-			loadRoute("/templates/main.html", function () {
-				// Compile Handlebars template
-				let source	= $("#podcast-list-template").html();
-				let template = Handlebars.compile(source);
-				let context = {
-					podcasts: podcasts
-				};
-				let templateHtml = template(context);
-
-				$("main#container").html(templateHtml);
-
-				podcastFilterSetup();
-
-				$('#loading-indicator').trigger('stop-loading');
-			});
-		}
-	).catch(function () {
-		console.error('An error ocurred loading the podcast list');
-
-		$('#loading-indicator').trigger('stop-loading');
-	});
-};
-*/
 let podcastListController = function (data) {
 	$('#loading-indicator').trigger('start-loading');
 

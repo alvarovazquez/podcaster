@@ -9,8 +9,16 @@ module.exports = function(grunt) {
 				separator: ';\n',
 			},
 			all: {
-				src: ['src/js/**/*.js'],
-				dest: 'src/js/<%= pkg.name %>.js',
+				src: ['src/js/*.js'],
+				dest: 'src/js/<%= pkg.name %>.min.js',
+			}
+		},
+
+		es6transpiler: {
+			dist: {
+				files: {
+					'src/js/<%= pkg.name %>.min.js': 'src/js/<%= pkg.name %>.min.js'
+				}
 			}
 		},
 
@@ -19,35 +27,29 @@ module.exports = function(grunt) {
 				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 			},
 			dist: {
-				src: 'src/js/<%= pkg.name %>.js',
-				dest: 'dist/js/<%= pkg.name %>.js'
+				files: {
+					'dist/js/<%= pkg.name %>.min.js': ['src/js/<%= pkg.name %>.min.js']
+				}
 			}
 		},
 		
 		copy: {
 			all: {
 				files: [
-					{expand: true, cwd:'src/js/', src: ['**/*.js'], dest: 'dist/js/'},
+					{expand: true, cwd:'src/js/ext/', src: ['**/*.js'], dest: 'dist/js/ext/'},
+					{expand: true, cwd:'src/js/', src: ['<%= pkg.name %>.min.js'], dest: 'dist/js/'},
 					{expand: true, cwd:'src/styles/', src: ['**/*.css'], dest: 'dist/styles/'},
-					{expand: true, cwd:'src/fonts/', src: ['**/*.ttf'], dest: 'dist/fonts/'},
-					{expand: true, cwd:'src/img/', src: ['**'], dest: 'dist/img/'},
+					{expand: true, cwd:'src/fonts/', src: ['**/*'], dest: 'dist/fonts/'},
 					{expand: true, cwd:'src/templates/', src: ['**'], dest: 'dist/templates/'},
 					{expand: true, cwd:'src/', src: ['index.html'], dest: 'dist/'}
-				]
-			},
-			dev: {
-				files: [
-					{expand: true, cwd:'src/js/', src: ['**/*.map'], dest: 'dist/js/'},
-					{expand: true, cwd:'src/styles/', src: ['**/*.map', '**/*.scss'], dest: 'dist/styles/'},
-					{expand: true, cwd:'src/fonts/', src: ['**/*.ttf'], dest: 'dist/fonts/'},
 				]
 			}
 		},
 		
 		clean: {
 			all: ['dist/*'],
-			allpost: ['src/styles/main.css', 'src/js/<%= pkg.name %>.js'],
-			commitpre: ['src/js/<%= pkg.name %>.js', 'src/styles/main.css.map']
+			allpost: ['src/js/<%= pkg.name %>.min.js'],
+			commitpre: ['src/js/<%= pkg.name %>.min.js']
 		},
 
 		connect: {
@@ -70,18 +72,19 @@ module.exports = function(grunt) {
 		}
 	});
 	
+	grunt.loadNpmTasks('grunt-es6-transpiler');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	
-	grunt.registerTask('dev', ['clean:all', 'concat', 'copy:all', 'copy:dev', 'clean:allpost']);
-	grunt.registerTask('dist', ['clean:all', 'concat', 'uglify', 'copy:all', 'clean:allpost', 'clean:distpost']);
+	grunt.registerTask('dev', ['clean:all', 'concat', 'copy:all', 'clean:allpost']);
+	grunt.registerTask('dist', ['clean:all', 'concat', 'es6transpiler', 'uglify:dist', 'copy:all', 'clean:allpost']);
 
-	grunt.registerTask('start-server', ['connect']);
+	grunt.registerTask('start-server', ['dev', 'connect']);
 
 	grunt.registerTask('prepare-commit', ['clean']);
 
-	grunt.registerTask('default', ['dist']);
+	grunt.registerTask('default', ['start-server']);
 };
