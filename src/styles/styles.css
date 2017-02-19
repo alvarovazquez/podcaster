@@ -336,3 +336,7 @@ with no need of equaling heights */
 	margin-bottom: 25px;
 	font-size: .8em;
 }
+
+#podcast-episode-detail > .podcast-episode-description img {
+	max-width: 100% !important;
+}
