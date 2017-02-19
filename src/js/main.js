@@ -538,20 +538,24 @@ let podcastDetailController = function (context) {
 				function () {
 					let podcast = podcastService.getPodcast(context.podcastId);
 
-					// Once we get the podcast episode list, we load the template
-					loadRoute("/templates/podcast-detail.html", function () {
-						// Compile Handlebars template
-						let source	= $("#podcast-detail-template").html();
-						let template = Handlebars.compile(source);
-						let context = {
-							podcast: podcast
-						};
-						let templateHtml = template(context);
+					if (podcast !== undefined) {
+						// Once we get the podcast episode list, we load the template
+						loadRoute("/templates/podcast-detail.html", function () {
+							// Compile Handlebars template
+							let source	= $("#podcast-detail-template").html();
+							let template = Handlebars.compile(source);
+							let context = {
+								podcast: podcast
+							};
+							let templateHtml = template(context);
 
-						$("main#container").html(templateHtml);
+							$("main#container").html(templateHtml);
+						});
+					} else {
+						console.error('Podcast with id = %s not found', context.podcastId);
+					}
 
-						$('#loading-indicator').trigger('stop-loading');
-					});
+					$('#loading-indicator').trigger('stop-loading');
 				}
 			).catch(function () {
 				console.error('An error ocurred loading the podcast detail');
@@ -578,21 +582,29 @@ let episodeDetailController = function (context) {
 					let podcast = podcastService.getPodcast(context.podcastId);
 					let episode = podcast.getEpisode(context.episodeId);
 
-					// Once we get the podcast episode list, we load the template
-					loadRoute("/templates/podcast-episode-detail.html", function () {
-						// Compile Handlebars template
-						let source	= $("#episode-detail-template").html();
-						let template = Handlebars.compile(source);
-						let context = {
-							podcast: podcast,
-							episode: episode
-						};
-						let templateHtml = template(context);
+					if (podcast !== undefined) {
+						if (episode !== undefined) {
+							// Once we get the podcast episode list, we load the template
+							loadRoute("/templates/podcast-episode-detail.html", function () {
+								// Compile Handlebars template
+								let source	= $("#episode-detail-template").html();
+								let template = Handlebars.compile(source);
+								let context = {
+									podcast: podcast,
+									episode: episode
+								};
+								let templateHtml = template(context);
 
-						$("main#container").html(templateHtml);
+								$("main#container").html(templateHtml);
+							});
+						} else {
+							console.error('Episode with id = %s not found for podcast %s', context.podcastId, podcast.title);
+						}
+					} else {
+						console.error('Podcast with id = %s not found', context.podcastId);
+					}
 
-						$('#loading-indicator').trigger('stop-loading');
-					});
+					$('#loading-indicator').trigger('stop-loading');
 				}
 			).catch(function () {
 				console.error('An error ocurred loading the episode detail');
