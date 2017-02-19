@@ -3,9 +3,11 @@
 ## A simple SPA Podcast application
 
 ### Prerequisites
-In order to be able to run this web application succesfully, you need Node Package Manager and Grunt previously installed in your computer.
+In order to be able to run this web application succesfully, you need **Node Package Manager** and **Grunt** previously installed in your computer.
 
-For more information: http://gruntjs.com/installing-grunt
+For more information: 
+* Install **Node Package Manager**: https://www.npmjs.com/get-npm
+* Install **Grunt**: http://gruntjs.com/installing-grunt
 
 ### Instructions to run this application
 #### Clone this repository
@@ -19,8 +21,13 @@ Run `npm install`
 
 #### Preapre the application
 There are two ways for preparing the application:
- * For development mode (non minified assets) run `grunt dev`
- * For production mode (minified assets) run `grunt dist`
+ * For **development** mode (non minified assets) run `grunt dev`
+ * For **production** mode (minified assets) run `grunt dist`
 
 #### Start the server
 Run `grunt start-server` and open http://127.0.0.1:8081/ in your browser
+
+#### Credits
+* **Page.js**, Micro client-side router: https://visionmedia.github.io/page.js/
+* **Handlebars**, semantic HTML/JavaScript templates: http://handlebarsjs.com/
+* **jQuery**, feature-rich JavaScript library: https://jquery.com/
