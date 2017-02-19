@@ -145,6 +145,7 @@ body > main {
 .podcast-list {
 	display: block;
 	float: left;
+	width: 100%;
 	margin: 0 0 50px 0;
 	padding: 0;
 	list-style-type: none;
@@ -159,6 +160,7 @@ with no need of equaling heights */
     margin: 55px 1% 20px 1%;
     padding: 0;
 	text-align: center;
+	word-wrap: break-word;
 	box-shadow: 0px 2px 4px 0px #BBB;
 }
 

@@ -189,6 +189,8 @@ class PodcastService {
 									if (entryTmp.summary !== undefined &&
 										entryTmp.summary.label !== undefined) {
 										description = entryTmp.summary.label;
+										// Trick to decode HTML entities
+										description = $('<textarea />').html(description).text();
 									} else {
 										console.warn("Couldn't get field 'description' for podcast %O", entryTmp);
 									}
@@ -329,6 +331,8 @@ class PodcastService {
 											if ($(this).find('description').length > 0) {
 												description = $(this).find('description').get(0).innerHTML;
 												description = description.replace('<![CDATA[', '').replace(']]>', '');
+												// Trick to decode HTML entities
+												description = $('<textarea />').html(description).text();
 											}
 
 											let duration;

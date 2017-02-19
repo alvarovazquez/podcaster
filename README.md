@@ -27,6 +27,11 @@ There are two ways for preparing the application:
 #### Start the server
 Run `grunt start-server` and open http://127.0.0.1:8081/ in your browser
 
+#### Notes
+For running the application in a different server than the one provided by Grunt for testing, take into account that this is a [Single Page Application](https://es.wikipedia.org/wiki/Single-page_application) with no HashBang navigation, so you need to redirect all non-asset requests to `/index.html`.
+
+For more information on how to do this please check your server's documentation.
+
 #### Credits
 * **Page.js**, Micro client-side router: https://visionmedia.github.io/page.js/
 * **Handlebars**, semantic HTML/JavaScript templates: http://handlebarsjs.com/
