@@ -1,0 +1,33 @@
+<script type="x-template" id="episode-detail-template">
+	<section id="podcast-detail">
+		<a href="/podcast/{{podcast.id}}" title="Go back to podcast detail">
+			<img src="{{podcast.image}}" alt="{{podcast.title}} Icon">
+		</a>
+
+		<div class="main-info">
+			<a href="/podcast/{{podcast.id}}" title="Go back to podcast detail">
+				<h2>{{podcast.title}}</h2>
+			</a>
+			<span class="author">by {{podcast.author}}</span>
+		</div>
+		
+		<h3>Description:</h3>
+		<div class="description">
+			{{{podcast.description}}}
+		</div>
+	</section>
+
+	<section id="podcast-episode-detail">
+		<h2>{{episode.title}}</h2>
+
+		<div class="podcast-episode-description">
+			{{{episode.description}}}
+		</div>
+
+		<audio controls>
+			<source src="{{episode.media.url}}" type="{{{episode.media.type}}}">
+
+			Your browser does not support the audio element.
+		</audio>
+	</section>
+</script>

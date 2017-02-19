@@ -1,0 +1,45 @@
+<script type="x-template" id="podcast-detail-template">
+	<section id="podcast-detail">
+		<a href="/podcast/{{podcast.id}}" title="Go back to podcast detail">
+			<img src="{{podcast.image}}" alt="{{podcast.title}} Icon">
+		</a>
+
+		<div class="main-info">
+			<a href="/podcast/{{podcast.id}}" title="Go back to podcast detail">
+				<h2>{{podcast.title}}</h2>
+			</a>
+			<span class="author">by {{podcast.author}}</span>
+		</div>
+
+		<h3>Description:</h3>
+		<div class="description">
+			{{{podcast.description}}}
+		</div>
+	</section>
+
+	<section id="podcast-episodes">
+		<header><h2>Episodes: {{podcast.episodes.length}}</h2></header>
+		
+		<div class="episodes">
+			<table class="episode-list">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Date</th>
+						<th>Duration</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{{#each podcast.episodes}}
+					<tr>
+						<td><a href="/podcast/{{../podcast.id}}/episode/{{id}}" title="Listen to {{title}}">{{title}}</a></td>
+						<td>{{formatDate publishDate}}</td>
+						<td>{{formatDuration duration}}</td>
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</section>
+</script>

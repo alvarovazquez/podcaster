@@ -1,0 +1,15 @@
+<script type="x-template" id="podcast-list-partial">
+	<ul class="podcast-list">
+		{{#each podcasts}}
+		{{{lineSeparator @index}}}
+
+		<li class="podcast">
+			<a href="/podcast/{{id}}" title="Go to podcast detail">
+				<img src="{{image}}" alt="{title}} icon">
+				<h2>{{title}}</h2>
+				<span class="author">Author: {{author}}</span>
+			</a>
+		</li>
+		{{/each}}
+	</ul>
+</script>

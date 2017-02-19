@@ -1,0 +1,319 @@
+/* For the sake of simplicity, we won't use SASS in this project although it would be recommended for larger projects */
+
+/* Font family */
+@font-face {
+	font-family: 'Myriad Pro';
+	font-style: normal;
+	font-weight: normal;
+	src: url('../fonts/Myriad-Pro.ttf') format('ttf');
+}
+
+@font-face {
+	font-family: 'Myriad Pro';
+	font-style: normal;
+	font-weight: bold;
+	src: url('../fonts/Myriad-Pro-Bold.ttf') format('ttf');
+}
+
+
+@font-face {
+	font-family: 'Myriad Pro';
+	font-style: normal;
+	font-weight: lighter;
+	src: url('../fonts/Myriad-Pro-Light.ttf') format('ttf');
+}
+
+/* General styles */
+* {
+	font-family: 'Myriad-Pro', sans-serif;
+	box-sizing: border-box;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+	text-decoration: none;
+	color: #08C;
+}
+
+body {
+	margin: 0;
+}
+
+body > header {
+	border-bottom: 1px solid #EEE;
+	padding: 0 0 5px 0;
+	max-width: 1000px;
+	margin: 0 auto;
+	margin: 20px auto;
+}
+
+body > header #loading-indicator {
+	float: right;
+	display: none;
+	width: 20px;
+	height: 20px;
+	position: relative;
+}
+body > header #loading-indicator.loading {
+	display: block;
+}
+
+body > header #loading-indicator .double-bounce1,
+body > header #loading-indicator .double-bounce2 {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background-color: #333;
+	opacity: 0.6;
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	-webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+	animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+body > header #loading-indicator .double-bounce2 {
+	-webkit-animation-delay: -1.0s;
+	animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+	0%, 100% {
+		-webkit-transform: scale(0.0)
+	}
+	50% {
+		-webkit-transform: scale(1.0)
+	}
+}
+
+@keyframes sk-bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  }
+  50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+
+body > header h1 {
+	font-weight: bold;
+	font-size: 1.2em;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+
+body > main {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+/* Podcast filter */
+#podcast-filter {
+	float: right;
+	margin-bottom: 20px;
+	margin-right: 15px;
+}
+
+#podcast-filter > #podcast-filter-qty {
+	background-color: #08C;
+	color: #FFF;
+	font-weight: bold;
+	display: inline-block;
+	border-radius: 8px;
+	padding: 2px 5px;
+	margin-right: 5px;
+	font-size: 0.9em;
+}
+
+#podcast-filter > #podcast-filter-text {
+	border-radius: 4px;
+	border: 1px solid #CCC;
+	font-size: 0.8em;
+	padding: 5px 15px;
+	width: 250px;
+}
+
+/* Podcast list */
+.podcast-list {
+	display: block;
+	float: left;
+	margin: 0 0 50px 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+/* Requirements doc shows that podcast height should adapt to content,
+with no need of equaling heights */
+.podcast-list .podcast {
+	display: block;
+	float: left;
+	width: 23%;
+    margin: 55px 1% 20px 1%;
+    padding: 0;
+	text-align: center;
+	box-shadow: 0px 2px 4px 0px #BBB;
+}
+
+.podcast-list .separator {
+	display: block;
+	float: left;
+	width: 100%;
+	clear: both;
+	margin-bottom: 30px;
+}
+
+.podcast-list .podcast a {
+	display: block;
+	width: 100%;
+	padding: 10px 15px;
+}
+
+.podcast-list .podcast a img {
+	border-radius: 50%;
+	width: 85px;
+	height: 85px;
+	display: block;
+	margin: -43px auto 5px auto;
+	background-color: #EEE;
+}
+
+.podcast-list .podcast a h2 {
+	text-transform: uppercase;
+	color: #000;
+	font-size: 1em;
+	font-size: 0.8em;
+}
+
+.podcast-list .podcast a .author {
+	color: #777;
+	font-size: .8em;
+}
+
+/* Podcast detail */
+#podcast-detail {
+	float: left;
+	width: 25%;
+	margin: 0 3% 15px 1%;
+	padding: 15px 10px;
+	box-shadow: 0px 2px 4px 0px #BBB;
+}
+
+#podcast-detail > a > img {
+	display: block;
+	border-radius: 5px;
+	width: 150px;
+	margin: 0 auto;
+}
+
+#podcast-detail > .main-info {
+	border-top: 1px solid #EEE;
+	border-bottom: 1px solid #EEE;
+	padding: 25px 5px;
+	margin: 15px auto;
+}
+
+#podcast-detail > .main-info > a > h2 {
+	margin: 0;
+	font-size: .8em;
+	color: #000;
+}
+
+#podcast-detail > .main-info .author {
+	font-size: .8em;
+	color: #333;
+	font-style: italic;
+}
+
+#podcast-detail > h3 {
+	font-size: .75em;
+	margin: 0;
+	color: #333;
+	margin-bottom: 10px;
+}
+
+#podcast-detail > .description {
+	font-size: .75em;
+	font-style: italic;
+	color: #333;
+}
+
+/* Podcast episode list */
+#podcast-episodes {
+	float: right;
+	width: 69%;
+	margin: 0 1% 15px 0;
+}
+
+#podcast-episodes > header {
+	margin-bottom: 15px;
+	box-shadow: 0px 2px 4px 0px #BBB;
+	padding: 10px;
+}
+
+#podcast-episodes > header > h2 {
+	margin: 0;
+	font-size: 1.5em;
+	color: #333;
+}
+
+#podcast-episodes > .episodes {
+	box-shadow: 0px 2px 4px 0px #BBB;
+	padding: 20px;
+} 
+
+#podcast-episodes > .episodes > table.episode-list {
+	padding: 30px 20px;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#podcast-episodes > .episodes > table.episode-list > thead > tr > th {
+	border-bottom: 2px solid #DDD;
+	font-weight: bold;
+	text-align: left;
+	font-size: 0.8em;
+	padding: 7px;
+	color: #333;
+}
+
+#podcast-episodes > .episodes > table.episode-list > tbody > tr:nth-child(2n+1) {
+	background-color: #EEE;
+}
+#podcast-episodes > .episodes > table.episode-list > tbody > tr:nth-child(2n) {
+	background-color: #FFF;
+}
+
+#podcast-episodes > .episodes > table.episode-list > tbody > tr > td {
+	border-bottom: 1px solid #DDD;
+	font-size: 0.8em;
+	padding: 7px;
+	color: #333;
+}
+
+/* Podcast episode detail */
+#podcast-episode-detail {
+	float: right;
+	width: 69%;
+	margin: 0 1% 15px 0;
+	padding: 10px;
+	box-shadow: 0px 2px 4px 0px #BBB;
+}
+
+#podcast-episode-detail > h2 {
+	margin: 0 0 10px 0;
+	font-size: 1em;
+}
+
+#podcast-episode-detail > .podcast-episode-description {
+	font-style: italic;
+	margin-bottom: 25px;
+	font-size: .8em;
+}

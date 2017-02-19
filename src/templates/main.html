@@ -1,0 +1,22 @@
+<script type="x-template" id="podcast-list-template">
+	<section id="podcasts">
+		<div id="podcast-filter">
+			<span id="podcast-filter-qty">{{podcasts.length}}</span>
+			<input id="podcast-filter-text" type="text" placeholder="Filter podcasts..">
+		</div>
+
+		 <ul class="podcast-list">
+			{{#each podcasts}}
+			{{{lineSeparator @index}}}
+
+			<li class="podcast">
+				<a href="/podcast/{{id}}" title="Go to podcast detail">
+					<img src="{{image}}" alt="{title}} icon">
+					<h2>{{title}}</h2>
+					<span class="author">Author: {{author}}</span>
+				</a>
+			</li>
+			{{/each}}
+		</ul>
+	</section>
+</script>
