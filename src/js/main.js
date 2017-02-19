@@ -306,6 +306,9 @@ class PodcastService {
 								// We get the actual feed and parse it to get the episode list
 								$.ajax(corsFeedUrl + data.results[0].feedUrl, {
 									dataType: 'xml',
+									data: {
+										format: 'xml'
+									},
 									success: function (data, textStatus) {
 										podcast.episodes = [];
 										let lastUpdate = new Date();
