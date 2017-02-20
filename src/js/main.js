@@ -49,8 +49,8 @@ class PodcastService {
 		this.podcastUrl = podcastUrl;
 		this.episodesUrl = episodesUrl;
 		// this.corsProxyUrl = 'http://cors.io/?u=';
-		// this.corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
-		this.corsProxyUrl = 'https://crossorigin.me/';
+		// this.corsProxyUrl = 'https://crossorigin.me/';
+		this.corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
 		this.podcasts = [];
 	}
 
@@ -438,13 +438,36 @@ Handlebars.registerHelper('formatDuration', function(duration) {
 	if (duration === undefined || duration === null) {
 		return '--:--';
 	} else if (duration.length > 0 && isNaN(duration)) {
-		return duration;
+		let durationElements = duration.split(':');
+		let formattedDuration = "";
+		
+		if (durationElements.length > 0) {
+			for (let i = durationElements.length - 1; i >= 0; i = i - 1) {
+				durationElements[i] = durationElements[i].trim();
+				
+				if (durationElements.length > 2 && i === 0 && (durationElements[i] === "0" || durationElements[i] === "00")) {
+					durationElements.splice(i, 1);
+					
+					break;
+				}
+				
+				if (durationElements[i].length < 2) {
+					durationElements[i] = '0' + durationElements[i];
+				}
+			}
+			
+			formattedDuration = durationElements.join(':');
+		} else {
+			formattedDuration = duration
+		}
+		
+		return formattedDuration;
 	} else {
 		let hours = Math.floor(duration / 3600);
 		let minutes = Math.floor(duration % 3600 / 60);
 		let seconds = Math.floor(duration % 3600 % 60);
-
-		return ((hours > 0 ? (hours < 10 ? "0" : "") + hours + ":" + (minutes < 10 ? "0" : "") : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
+		
+		return ((hours > 0 ? (hours < 10 ? "0" : "") + hours + ":" : "") + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
 	}
 });
 
