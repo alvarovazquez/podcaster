@@ -32,6 +32,10 @@ For running the application in a different server than the one provided by Grunt
 
 For more information on how to do this please check your server's documentation.
 
+Podcast card heights in the main list are not matched because in the PDF with the requisites they appear not equalled. It wouldn't be hard at all to match them.
+
+If CORS request fails for some reason (proxy), substitute the one in `line 53` of `src/js/main.js` for one of the others that are in the comments above.
+
 #### Credits
 * **Page.js**, Micro client-side router: https://visionmedia.github.io/page.js/
 * **Handlebars**, semantic HTML/JavaScript templates: http://handlebarsjs.com/

@@ -49,6 +49,7 @@ class PodcastService {
 		this.podcastUrl = podcastUrl;
 		this.episodesUrl = episodesUrl;
 		// this.corsProxyUrl = 'http://cors.io/?u=';
+		// this.corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
 		this.corsProxyUrl = 'https://crossorigin.me/';
 		this.podcasts = [];
 	}
@@ -443,7 +444,7 @@ Handlebars.registerHelper('formatDuration', function(duration) {
 		let minutes = Math.floor(duration % 3600 / 60);
 		let seconds = Math.floor(duration % 3600 % 60);
 
-		return ((hours > 0 ? hours + ":" + (minutes < 10 ? "0" : "") : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
+		return ((hours > 0 ? (hours < 10 ? "0" : "") + hours + ":" + (minutes < 10 ? "0" : "") : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
 	}
 });
 
